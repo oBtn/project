@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>倒影</title>
+<style>
+*{ margin:0; padding:0; list-style:none; }
+body{ background:#000; }
+.box{ }
+.box li{ width:200px; height:200px; float:left; position:relative; margin:0 10px; }
+.box li span{ width:100%; height:100%; position:absolute; top:205px; left:0; -webkit-transform:scale(1,-1); -webkit-mask:-webkit-linear-gradient(rgba(0,0,0,0) 60%,rgba(0,0,0,0.5)); }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oBox = document.querySelector('.box');
+	var aLi = oBox.children;
+	var aS = document.querySelectorAll('span');
+	for(var i=0;i<aLi.length;i++){			
+		;(function(index){
+			aLi[index].style.background = 'url(img/d00'+parseInt(index+1)+'.jpg) no-repeat';
+			aLi[index].style.backgroundSize = 'contain';
+			aS[index].style.background = 'url(img/d00'+parseInt(index+1)+'.jpg) no-repeat';	
+			aS[index].style.backgroundSize = 'contain';		
+		})(i);
+
+	}
+	
+},false);
+</script>
+</head>
+<body>
+	<ul class="box">
+    	<li>
+        	<span></span>
+        </li>
+        <li>
+        	<span></span>
+        </li>
+        <li>
+        	<span></span>
+        </li>
+        <li>
+        	<span></span>
+        </li>
+        <li>
+        	<span></span>
+        </li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>canvas柱形图</title>
+<style>
+*{ margin:0; padding:0; }
+body{ background:#000; text-align:center; }
+canvas{ background:#fff; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oC = document.querySelector('.c1');
+	var gd = oC.getContext('2d');
+	
+	var arr = [25,38,78,90,54,24,25,37];
+	
+	var iMax = Math.max.apply(null,arr);
+	var w = oC.width/(arr.length*3-2);
+	for(var i=0;i<arr.length;i++){
+		;(function(i){
+			var H = arr[i]*oC.height/iMax;
+			gd.fillRect(i*w*3,oC.height-H,w,H);
+		})(i);
+	}
+	
+},false);
+</script>
+</head>
+<body>
+	<canvas width="800" height="600" class="c1"></canvas>
+</body>
+</html>

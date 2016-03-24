@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CD</title>
+<style>
+*{ margin:0; padding:0; }
+.box{ width:200px; margin:100px auto; position:relative; height:200px; }
+.cd{ width:194px; height:194px; margin:0 auto; background:url(img/cd.png) no-repeat; -webkit-transition:1s all linear; }
+.bg{ width: 200px; height:200px; background:url(img/img_01.jpg) no-repeat; position:absolute; top:20px; left:0; -webkit-transition:0.5s all linear; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oBox = document.querySelector('.box');
+	var oCd = document.querySelector('.cd');
+	var oBg = document.querySelector('.bg');
+	oBox.onmouseenter=function(){
+		oBg.style.WebkitTransform = 'translate(0,60px)';
+		oCd.style.WebkitTransform = 'rotate(180deg)';
+	};
+	oBox.onmouseleave=function(){
+		oBg.style.WebkitTransform = 'translate(0,0px)';
+		oCd.style.WebkitTransform = 'rotate(0deg)';
+	};	
+},false);
+</script>
+</head>
+<body>
+	<div class="box">
+    	<div class="cd"></div>
+        <div class="bg"></div>
+    </div>
+</body>
+</html>

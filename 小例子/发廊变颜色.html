@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>发廊滚动条</title>
+<style>
+*{ margin:0; padding:0; }
+.show{ margin-left:75px; }
+.move{ width:500px; height:50px; border:1px solid #ccc; margin:200px auto; position:relative; overflow:hidden; }
+@keyframes test{
+	form{ top:0}
+	to{top:-56px; color:#00F}	
+}
+.bg{ width:500px; height:200px; background:-webkit-repeating-linear-gradient(-45deg,blue 0px,blue 20px,green 20px,green 40px); position:absolute; left:0; top:0; -webkit-animation:.4s test linear infinite ; }
+
+
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oC1 = document.querySelector('#color1');
+	var oC2 = document.querySelector('#color2');
+	var oS1 = document.querySelector('.col1');
+	var oS2 = document.querySelector('.col2');
+	var oBg = document.querySelector('.bg');	
+	oC1.value = '#0000ff';
+	oC2.value = '#008000';
+	oS1.innerHTML = oC1.value;	
+	oS2.innerHTML = oC2.value;	
+	oC1.onchange=function(){
+		oS1.innerHTML = oC1.value;	
+		oBg.style.background = '-webkit-repeating-linear-gradient(-45deg,'+oC1.value+' 0px,'+oC1.value+' 20px,green 20px,green 40px)' ;
+	};
+	oC2.onchange=function(){
+		oS2.innerHTML = oC2.value;
+		oBg.style.background = '-webkit-repeating-linear-gradient(-45deg,'+oC2.value+' 0px,'+oC2.value+' 20px,green 20px,green 40px)';	
+	};
+},false);
+</script>
+</head>
+<body>
+	选择颜色：
+    <input id="color1" type="color" />
+    <input id="color2" type="color" />
+	<div class="show">
+        <span class="col1"></span>
+        <span class="col2"></span>	
+    </div>
+    <div class="move">
+    	<div class="bg"></div>
+    </div>
+</body>
+</html>

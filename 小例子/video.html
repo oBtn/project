@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>video</title>
+<style>
+*{ margin:0; padding:0; text-decoration:none; }
+.box{ width:800px; border:1px solid #ccc; margin:50px auto; position:relative; background:#CF9; }
+.box video{ width:800px; display:block; }
+.box .ctr{ text-align:center; font:bold 30px/50px ''; width:100%; overflow:hidden;  }
+.ctr a{ width:160px; height:50px; background:#000; border-radius:25px; float:left; cursor:pointer; margin-left:80px; color:#f90; }
+.bar_box{ width:100%; height:20px; background:#ccc; margin:8px 0px; position:relative; }
+.bar_box .pro{ width:0px; height:20px; background:#9CF; position:absolute; left:0; top:0; }
+.bar_box .bar{ width:20px; height:20px; background:#333; position:absolute; left:0; top:0; cursor:pointer; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oV = document.querySelector('video');
+	var oBox = document.querySelector('.box');
+	var oBarBox = document.querySelector('.bar_box');
+	var oPro = document.querySelector('.pro');
+	var oBar = document.querySelector('.bar'); 
+	var oStart = document.querySelector('.start');
+	var oPause = document.querySelector('.pause');
+	var oStop = document.querySelector('.stop');	
+	oStart.onclick = function(){
+		oV.play();
+	};
+	oPause.onclick = function(){
+		oV.pause();
+	};
+	oStop.onclick = function(){
+		oV.pause();
+		oV.currentTime = 0; 
+	};
+	oV.ontimeupdate = function(){
+		var scale = oV.currentTime/oV.duration;
+		oPro.style.width = scale*oBarBox.offsetWidth+'px';
+		l = scale*oBarBox.offsetWidth;
+		if(l<0){
+			l=0;
+		}else if(l>oBarBox.offsetWidth-oBar.offsetWidth){
+			l = oBarBox.offsetWidth-oBar.offsetWidth;
+		}
+		oBar.style.left = l+'px';
+	};
+	oBar.onmousedown = function(ev){
+		var disX = ev.clientX - oBar.offsetLeft;
+		document.onmousemove = function(ev){
+			var l = ev.clientX - disX;
+			if(l<0){
+				l=0;
+			}else if(l>oBarBox.offsetWidth-oBar.offsetWidth){
+				l = oBarBox.offsetWidth-oBar.offsetWidth;
+			}
+			var scale = l/(oBarBox.offsetWidth-oBar.offsetWidth);
+			oBar.style.left = l + 'px';
+			oPro .style.width = scale*oBarBox.offsetWidth + 'px';
+			oV.currentTime = scale*oV.duration;
+		};
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null; 
+		};
+		return false;
+	};
+	oBarBox.onclick = function(ev){
+		var disX = ev.clientX-oBarBox.offsetLeft;
+		var scale = disX/oBarBox.offsetWidth;
+		oBar.style.left = scale*(oBarBox.offsetWidth-oBar.offsetWidth)+'px';
+		oPro.style.width = scale*oBarBox.offsetWidth+'px';
+		oV.currentTime = scale*oV.duration;
+	};	
+},false);
+</script>
+</head>
+<body>
+<div class="box">
+	<video src="ads.mp4" ></video>
+    <div class="bar_box">
+    	<div class="pro"></div>
+        <div class="bar"></div>
+    </div>
+   	<div class="ctr">
+        <a href="javascript:;" class="start">开始</a>
+        <a href="javascript:;" class="pause">暂停</a>
+        <a href="javascript:;" class="stop">停止</a>
+    </div>
+	
+</div>    
+</body>
+</html>

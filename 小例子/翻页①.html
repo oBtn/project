@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>翻页</title>
+<style>
+*{ margin:0; padding:0; }
+.box{ width:700px; height:400px; background:url(img/1.jpg) no-repeat; margin:100px auto; position:relative; -webkit-transform-style:preserve-3d; -webkit-transform:perspective(800px); }
+.box .show{ width:350px; height:400px; background:url(img/2.jpg) no-repeat; position:absolute; left:0px; top:0; -webkit-transform:rotateY(0deg) scale(-1,1); transform-origin:right; opacity:0; }
+.box .show2{ width:350px; height:400px; position:absolute; right:0; top:0; background:url(img/2.jpg) 100% 50% no-repeat; opacity:0; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oBox = document.querySelector('.box');
+	var oShow = document.querySelector('.show');
+	var oShow2 = document.querySelector('.show2');
+	var iNow = 0;
+	oBox.onclick = function(){
+		iNow++;
+		oShow.style.opacity = 1;
+		oShow2.style.opacity = 1;
+		oShow.style.WebkitTransition = '1s all ease';
+		oShow.style.WebkitTransform = 'scale(-1,1) rotateY(180deg)';
+		setTimeout(function(){			
+			oBox.style.backgroundImage='none';
+		},500);
+	};
+	oShow.addEventListener('transitionend',function(){
+		oShow.style.opacity = 0;
+		oShow2.style.opacity = 0;
+		oShow.style.WebkitTransition = 'none';
+		oShow.style.WebkitTransform = 'rotateY(0deg) scale(-1,1)';
+		oShow.style.backgroundImage = 'url(img/'+((iNow+1)%3+1)+'.jpg)';		
+		oShow2.style.backgroundImage = 'url(img/'+((iNow+1)%3+1)+'.jpg)';
+		oBox.style.backgroundImage = 'url(img/'+(iNow%3+1)+'.jpg)';				
+	},false);		
+},false);
+</script>
+</head>
+<body>
+	<div class="box">
+    	<div class="show"></div>
+        <div class="show2"></div>
+    </div>
+</body>
+</html>

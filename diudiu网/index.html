@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>丢丢</title>
+<meta name="viewport" content="width=device-width,initical-scale=1,user-scalable=no" />
+<style>
+body,div,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,a,i,b,em,strong,span,img{ padding:0; margin:0; }
+a{ text-decoration:none; }
+li{ list-style:none; }
+i,em{ font-style:normal; }
+b,strong{ font-weight:normal; }
+.fl{ float:left; }
+.fr{ float:right; }
+.clearFix:after{ content:''; display:block; clear:both; }
+.clearFix{ zoom:1; }
+input,select{ border:none; outline:none; }
+html{ font-size:20px; }
+body{ background:#f0f0f0; font-family:'微软雅黑'; }
+.box{ width:16rem; }
+.box header{ width:16rem; height:2.15rem; background:#f0f0f0; line-height:2.15rem; overflow:hidden; }
+.box header h1{ font-size:1.25rem; margin-left:0.5rem; color:#149376; font-weight:bold; font-family:微软雅黑; }
+.box header div{ margin-right:0.8rem; }
+.box header div img{ width:1rem; margin-top:0.5rem; }
+.box header div a.car img{ width:1.5rem; }
+.box .banner{width:16rem; height:6.25rem; overflow:hidden; position:relative; }
+.box .banner ul{width:128rem; height:6.25rem; position:absolute; left:0; top:0; }
+.box .banner ul li{ width:16rem; height:6.25rem; float:left; }
+.box .banner ul li a img{ width:16rem; height:6.25rem; }
+.box .dw{ width:16rem; text-align:center; height:1.5rem;margin:0.5rem 0;  }
+.box .dw img{ width:15rem; height:1.5rem; }
+.box .search{ width:15rem; height:2rem; margin:0 auto; }
+.box .search input[type=text]{ width:11.9rem; height:2rem; border:1px solid #ed9533; box-sizing:border-box; font-size:0.65rem; padding-left:0.65rem; }
+.box .search input[type=button]{ height:2rem; width:3.0rem; background:#ed9533; }
+.box .nav{ width:11rem; margin:0.5rem auto; height:2.5rem; }
+.box .nav a{ margin:0.4375rem; font-size:0.65rem; color:#7d7d7d; }
+.box .menu{ width:15.6rem; margin:0 auto; }
+.box .menu li{ float:left; width:3rem; margin:0 0.45rem; line-height:1rem; text-align:center; }
+.box .menu li div{ width:3rem; height:3rem; border:2px solid #c3c3c3; border-radius:8px; }
+.box .menu li div.one{ background:url(img/list001.png) no-repeat center #fff; background-size:50%; }
+.box .menu li div.two{ background:url(img/list002.png) no-repeat center #fff; background-size:50%; }
+.box .menu li div.three{ background:url(img/list003.png) no-repeat center #fff; background-size:50%; }
+.box .menu li div.four{ background:url(img/list004.png) no-repeat center #fff; background-size:50%; }
+.box .menu li p{ font-size:0.55rem; }
+.box .menu li a{ color:#6b6b6b; }
+.box .tody{ width:16rem; height:1.55rem; background:#fe9600; margin-top:1rem; color:#fff; line-height:1.55rem; }
+.box .tody p{ font-size:0.7rem; margin-left:0.55rem; font-weight:bold; font-family:'微软雅黑'; }
+.box .tody i{ font-size:0.55rem; margin-left:0.55rem; }
+.box .tody b{ margin-right:0.6rem; font:bold 0.5rem/1.55rem ''; }
+.box .show{ width:16rem; margin-top:0.5rem; }
+.box .show .bath{ margin-bottom:0.5rem; }
+.box .show .bath img{ width:7.25rem; height:7.25rem; margin-left:0.4rem; }
+.box .show .small{ width:15.2rem; height:4.075rem; background:url(img/bg002.png) no-repeat; background-size:100%; }
+.box .show .small p{ line-height:2.0375rem; font-size:0.7rem; padding-left:0.5rem; }
+.box .show .small p i{ color:#c00000; font-weight:bold; }
+.box .dis{ width:16rem; height:1.55rem; background:#e50055; margin-top:1rem; color:#fff; line-height:1.55rem; }
+.box .dis p{ font-size:0.7rem; margin-left:0.55rem; font-weight:bold; font-family:'微软雅黑'; }
+.box .dis i{ font-size:0.55rem; margin-left:0.55rem; }
+.box .dis b{ margin-right:0.6rem; font:bold 0.5rem/1.55rem ''; }
+.box .show .ad img{ width:16rem; height:7rem; display:block; }
+.box .list{ width:16rem; }
+.box .list ul{}
+.box .list ul li{ width:4.6rem; height:1.45rem; background:#fff; border-radius:6px; float:left; text-align:center; font:0.65rem/1.45rem '微软雅黑'; margin-left:0.55rem; margin-top:0.55rem; }
+.box .list ul li a{ color:#6a6a6a; }
+.box .list .small{ width:15.2rem; height:4.075rem; background:url(img/bg002.png) no-repeat; background-size:100%; margin-top:0.5rem; }
+.box .list .small p{ line-height:2.0375rem; font-size:0.7rem; padding-left:0.5rem; }
+.box .list .small p i{ color:#eca026; font-weight:bold; }
+.box .my{ width:15.6rem; margin:1.25rem auto; }
+.box .my li{ float:left; width:3rem; margin:0 0.45rem; line-height:1rem; text-align:center; }
+.box .my li div{ width:3rem; height:3rem; border:2px solid #c3c3c3; border-radius:8px; }
+.box .my li div.one{ background:url(img/my001.png) no-repeat center #fff;  background-size:35%; }
+.box .my li div.two{ background:url(img/my002.png) no-repeat center #fff; background-size:50%; }
+.box .my li div.three{ background:url(img/my003.png) no-repeat center #fff; background-size:50%; }
+.box .my li div.four{ background:url(img/my004.png) no-repeat center #fff; background-size:50%; }
+.box .my li p{ font-size:0.55rem; }
+.box .my li a{ color:#6b6b6b; }
+.box .end{ width:15rem; margin:0 auto; }
+.box .end input[type=text]{ width:11.9rem; height:2rem; border:1px solid #b0b0b0; box-sizing:border-box; font-size:0.65rem; padding-left:0.65rem; }
+.box .end input[type=button]{ height:2rem; width:3.0rem; background:#b0b0b0; }
+.box .end div{ width:16rem; }
+.box .end div p{ line-height:1.625rem; text-align:center; }
+.box .end div p a{ font-size:0.7rem; color:#212121; margin:0.9375rem; }
+.box .login{ width:16rem; height:1.5rem; background:#b0b0b0; line-height:1.5rem; }
+.box .login a{ color:#ededed; font-size:0.7rem; margin:0 0.75rem;}
+.box footer{ width:16rem; height:2rem; line-height:2rem; font-size:0.6rem; }
+</style>
+<script>
+;(function(){
+	document.documentElement.style.fontSize = document.documentElement.clientWidth*20/320 + 'px';	
+})();
+document.addEventListener('DOMContentLoaded',function(){
+	var oban = document.querySelector('.banner');
+	var oUl = document.querySelector('.banner ul');
+	var aLi = document.querySelectorAll('.banner ul li');
+	var iNow = 1;
+	var x = -iNow*aLi[0].offsetWidth;
+	oUl.style.WebkitTransform = 'translate3d('+x+'px,0,0)';
+	var changeSize = 50;
+	var bOk = false;
+	oUl.addEventListener('touchstart',function(ev){
+		if(bOk)return;
+		bOk = true;
+		var downX = ev.targetTouches[0].pageX;
+		var disX = downX - x;
+		oUl.style.WebkitTransition = 'none';
+		
+		function fnMove(ev){
+			x = ev.targetTouches[0].pageX - disX;
+			oUl.style.WebkitTransform = 'translate3d('+x+'px,0,0)';
+		}
+		
+		function fnEnd(ev){
+			oUl.style.WebkitTransition = '.5s all ease';
+			var upX = ev.changedTouches[0].pageX;
+			if(Math.abs(upX-downX)>=changeSize){
+				if(upX<downX){
+					iNow++;
+					iNow==aLi.length&&(iNow=aLi.length-1);
+				}else{
+					iNow--;
+					iNow<0&&(iNow=0);
+				}
+				x = -iNow*aLi[0].offsetWidth;
+				oUl.style.WebkitTransform = 'translate3d('+x+'px,0,0)';	
+			}else{
+				x = -iNow*aLi[0].offsetWidth;	
+				oUl.style.WebkitTransform = 'translate3d('+x+'px,0,0)';	
+			}
+			document.removeEventListener('touchmove',fnMove,false);
+			document.removeEventListener('touchend',fnEnd,false);	
+			oUl.addEventListener('transitionend',function(ev){
+				oUl.style.WebkitTransition = 'none';
+				if(iNow==0){
+					iNow = aLi.length-2;		
+				}else if(iNow==aLi.length-1){
+					iNow=1;
+				}
+				x = -iNow*aLi[0].offsetWidth;
+				oUl.style.WebkitTransform = 'translate3d('+x+'px,0,0)';					
+				bOk = false;				
+			},false);
+		}
+		document.addEventListener('touchmove',fnMove,false);
+		document.addEventListener('touchend',fnEnd,false);
+		ev.preventDefault();
+	},false);
+},false);
+</script>
+</head>
+<body>
+	<div class="box">
+    	<header class="clearFix">
+        	<h1 class="fl">丢丢网</h1>
+            <div class="fr">
+            	<a href="javascript:;">
+                	<img src="img/menu_01.png" alt="" /> 
+                </a>
+                <a class="car" href="javascript:;">
+                	<img src="img/menu_02.png" alt="" /> 
+                </a>
+                <a href="javascript:;">
+                	<img src="img/menu_03.png" alt="" /> 
+                </a>
+            </div>
+        </header>
+        <section class="banner">
+        	<ul class="clearFix">
+                <li>
+                	<a href="javascript:;">
+                    	<img src="img/banner006.jpg" alt="" />
+                    </a>
+                </li>
+            	<li>
+                	<a href="javascript:;">
+                    	<img src="img/banner001.jpg" alt="" />
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	<img src="img/banner002.jpg" alt="" />
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	<img src="img/banner003.jpg" alt="" />
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	<img src="img/banner004.jpg" alt="" />
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	<img src="img/banner005.jpg" alt="" />
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	<img src="img/banner006.jpg" alt="" />
+                    </a>
+                </li>
+            	<li>
+                	<a href="javascript:;">
+                    	<img src="img/banner001.jpg" alt="" />
+                    </a>
+                </li>                
+            </ul>
+        </section>
+        <div class="dw">
+        	<a href="javascript:;">
+            	<img src="img/dw001.jpg" alt="" />
+            </a>
+        </div>
+        <section class="search clearFix">
+        	<input class="fl" type="text" placeholder="尾品汇"  value=""/>
+            <input class="fl" type="button"  value=""/>
+        </section>
+        <section class="nav clearFix">
+        	<a href="javascript:;">图书</a>
+            <a href="javascript:;">母婴</a>
+            <a href="javascript:;">童装</a>
+            <a href="javascript:;">美妆</a><br />
+            <a href="javascript:;">家居</a>
+            <a href="javascript:;">服装</a>
+            <a href="javascript:;">鞋靴</a>
+            <a href="javascript:;">箱包</a>
+        </section>
+        <section class="menu">
+        	<ul class="clearFix">
+            	<li>
+                	<a href="javascript:;">
+                		<div class="one">
+                        </div>
+                    	<p>我的订单</p>
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                		<div class="two">
+                        	
+                        </div>
+                    	<p>我的订单</p>
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                		<div class="three">
+                        	
+                        </div>
+                    	<p>我的订单</p>
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                		<div class="four">
+                        	
+                        </div>
+                    	<p>我的订单</p>
+                    </a>
+                </li>
+            </ul>
+            
+        </section>
+        <section class="tody clearFix">
+        	<p class="fl">今日闪价</p>
+            <i class="fl">挑战全网最低价</i>
+            <b class="fr">&gt;</b>
+        </section>
+        <section class="show">
+        	<div class="bath">
+            	<a href="javascript:;">
+                	<img src="img/zhanshi001.png" alt="" />
+                </a>
+            	<a href="javascript:;">
+                	<img src="img/zhanshi002.png" alt="" />
+                </a>
+            </div>
+            <div class="small">
+            	<p class="clearFix">桌面迷你小太阳取暖器2档调<i class="fr">¥29.00</i></p>
+                <p class="clearFix">LOCK&LOCK乐扣  普通型套<i class="fr">¥29.00</i></p>
+            </div>
+            <section class="dis clearFix">
+                <p class="fl">尾品汇1-3折</p>
+                <i class="fl">名品清仓特卖</i>
+                <b class="fr">&gt;</b>
+        	</section>
+            <div class="ad">
+            	<a href="javascript:;">
+                	<img src="img/ad001.jpg" alt="" />
+                </a>
+                <a href="javascript:;">
+                	<img src="img/ad002.jpg" alt="" />
+                </a>
+                <a href="javascript:;">
+                	<img src="img/ad003.jpg" alt="" />
+                </a>
+            </div>
+        </section>
+        <section class="list">
+        	<ul class="clearFix">
+            	<li>
+                	<a href="javascript:;">
+                    	男装
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	男装
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	男装
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	男装
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	男装
+                    </a>
+                </li>
+            </ul>
+            <div class="small">
+            	<p class="clearFix">笛莎童装 每个女孩都是公主<i class="fr">2.0折</i></p>
+                <p class="clearFix">亚都净化专场 全国包邮49折<i class="fr">3.0折</i></p>
+            </div>
+        </section>
+        <section class="my">
+        	<ul class="clearFix">
+            	<li>
+                	<a href="javascript:;">
+                		<div class="one">
+                        </div>
+                    	<p>我的订单</p>
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                		<div class="two">
+                        	
+                        </div>
+                    	<p>我的订单</p>
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                		<div class="three">
+                        	
+                        </div>
+                    	<p>我的订单</p>
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                		<div class="four">
+                        	
+                        </div>
+                    	<p>我的订单</p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <section class="end clearFix">
+        	<input class="fl" type="text" placeholder="请输入商品名称"  value=""/>
+            <input class="fl" type="button"  value=""/>
+            <div class="fl">
+            	<p>
+                	<a href="javascript:;">精简版</a>
+                    <a href="javascript:;">精简版</a>
+                    <a href="javascript:;">精简版</a>
+                </p>
+                <p>
+                	<a href="javascript:;">精简版</a>
+                    <a href="javascript:;">精简版</a>
+                    <a href="javascript:;">精简版</a>
+                </p>
+            </div>
+        </section>
+        <section class="login clearFix">
+        	<a class="fl" href="javascript:;">登录</a>
+            <a class="fl" href="javascript:;">注册</a>
+            <a class="fr" href="javascript:;">↑TOP </a>
+        </section>
+        <footer>
+        	温馨提示：本信息仅供提供演示方便连接，与原网站无关！
+        </footer>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

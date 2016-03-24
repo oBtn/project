@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>正方体</title>
+<style>
+*{ margin:0; padding:0; list-style:none; }
+ul{ width:700px; height:400px; margin:100px auto; position:relative; -webkit-transform-style:preserve-3d;  -webkit-transform:perspective(800px) rotateY(0) rotateX(0); }
+li{ width:100%; height:100%; position:absolute; left:0; top:0;}
+li.front{ -webkit-transform:translateZ(350px); background:url(img/1.jpg) no-repeat; }
+li.back{ -webkit-transform:translateZ(-350px); background:url(img/1.jpg) no-repeat; }
+li.left{ background:url(img/2.jpg) no-repeat; -webkit-transform:translateX(350px) rotateY(90deg); }
+li.right{ background:url(img/3.jpg) no-repeat; -webkit-transform:translateX(-350px) rotateY(-90deg); }
+ 
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oUl = document.querySelector('ul');
+	var Left = oUl.children[0];
+	var Front = oUl.children[1]; 
+	var iNow = 0;
+	oUl.onclick=function(){
+		iNow++;
+		oUl.style.WebkitTransition = '1s all ease';
+		oUl.style.WebkitTransform = 'perspective(800px) rotateY(-90deg)';	
+		oUl.addEventListener('transitionend',function(){
+			Left.style.backgroundImage = 'url(img/'+((iNow+1)%3+1)+'.jpg)';
+			Front.style.backgroundImage = 'url(img/'+(iNow%3+1)+'.jpg';
+			oUl.style.WebkitTransition = 'none';
+			oUl.style.WebkitTransform = 'perspective(800px) rotateY(0deg)';	
+		},false);	
+	}
+	
+	
+},false);	
+</script>
+</head>
+<body>
+	<ul>
+    	<li class="left"></li>
+        <li class="front"></li>
+        <li class="right"></li>
+        <li class="back"></li>
+    </ul>
+</body>
+</html>

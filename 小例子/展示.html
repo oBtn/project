@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>show</title>
+<style>
+*{ margin:0; padding:0; list-style:none; }
+ul{ width:400px; height:300px; position:relative; margin:100px auto; -webkit-perspective:800px; }
+ul li{ width:100%; height:100%; background:#f90; position:absolute; left:0; top:0; opacity:0; text-align:center; font:bold 80px/300px '微软雅黑'; -webkit-transition:1s all ease; }
+ul li.on{ opacity:1; z-index:5; }
+ul li.l2{ -webkit-transform:translateX(-350px) rotateY(50deg); opacity:0; z-index:1; }
+ul li.l1{ -webkit-transform:translateX(-300px) rotateY(50deg); opacity:0.8;  z-index:3;}
+ul li.r1{ -webkit-transform:translateX(300px) rotateY(-50deg); opacity:0.8;  z-index:3;}
+ul li.r2{ -webkit-transform:translateX(350px) rotateY(-50deg); opacity:0;  z-index:1;}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oPrev = document.getElementById('prev');
+	var oNext = document.getElementById('next');
+	var aLi = document.querySelectorAll('ul li');
+	var aClass=[];
+	for(var i=0;i<aLi.length;i++){
+		aClass.push(aLi[i].className);
+	}
+	//alert(aClass);
+	oPrev.onclick =	function(){
+		aClass.unshift(aClass.pop());
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].className = aClass[i];
+		}
+	};
+	oNext.onclick =	function(){
+		aClass.push(aClass.shift());
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].className = aClass[i];
+		}
+	};	
+	
+},false);
+</script>
+</head>
+<body>
+	<a href="javascript:;" id="prev">左</a>
+    <a href="javascript:;" id="next">右</a>
+	<ul>
+    	<li class="on">1</li>
+        <li class="r1">2</li>
+        <li class="r2">3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li class="l2">9</li>
+  		<li class="l1">10</li>
+  </ul>
+</body>
+</html>
